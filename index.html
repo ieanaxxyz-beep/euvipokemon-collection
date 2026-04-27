@@ -24,13 +24,13 @@
   </div>
 </div>
 
-  <script type="module">
-  // 1. Import the specific tools we need (Login + Database)
+ <script type="module">
+  // 1. Imports
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
   import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
   import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
 
-  // 2. Your specific keys from the screenshot
+  // 2. Config
   const firebaseConfig = {
     apiKey: "AIzaSyCapNbMuYR4Hz0bERj0SVPE6CiqSAUxK-k",
     authDomain: "tcg-pocket-d358c.firebaseapp.com",
@@ -41,33 +41,127 @@
     measurementId: "G-MEE71X7GWH"
   };
 
-  // 3. Start the engine
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getDatabase(app);
 
-  // 4. Make the Login Button work
+  // 3. LOGIN LOGIC
   window.loginWithGoogle = function() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log("Logged in successfully!");
-      })
-      .catch((error) => {
-        alert("Login failed! Did you enable Google in the Firebase Console? Error: " + error.message);
-      });
+      .then((result) => { console.log("Logged in!"); })
+      .catch((error) => { alert(error.message); });
   };
 
-  // 5. Check if the user is already logged in
   onAuthStateChanged(auth, (user) => {
     const overlay = document.getElementById('login-overlay');
     if (user) {
       if (overlay) overlay.style.display = 'none';
-      console.log("Welcome back, trainer!");
+      loadBinderFromCloud(user.uid);
     } else {
       if (overlay) overlay.style.display = 'flex';
     }
   });
+
+  // 4. NAVIGATION LOGIC (This is why your binders weren't opening!)
+  window.openBinder = function(binderId) {
+    const openSfx = document.getElementById('sfx-open');
+    if (openSfx) { openSfx.currentTime = 0; openSfx.play(); }
+
+    document.getElementById('home-screen').style.display = 'none';
+    document.querySelectorAll('.binder-page').forEach(page => {
+      page.style.display = 'none';
+    });
+
+    const target = document.getElementById(binderId);
+    if (target) {
+      target.style.display = 'block';
+      const title = target.querySelector('h4');
+      if (title) {
+        title.style.animation = 'none';
+        void title.offsetWidth;
+        title.style.animation = 'typing 3s steps(30, end) forwards';
+      }
+    }
+  };
+
+  window.goHome = function() {
+    const backSfx = document.getElementById('sfx-back');
+    if (backSfx) { backSfx.currentTime = 0; backSfx.play(); }
+    document.querySelectorAll('.binder-page').forEach(page => {
+      page.style.display = 'none';
+    });
+    document.getElementById('home-screen').style.display = 'block';
+  };
+
+  window.filterCards = function() {
+    const query = document.getElementById('main-search').value.toLowerCase().trim();
+    const menuCards = document.querySelectorAll('.menu-card');
+    menuCards.forEach(card => {
+      const pokemonName = card.querySelector('h2').textContent.toLowerCase();
+      card.style.display = pokemonName.includes(query) ? "flex" : "none";
+    });
+  };
+
+  // 5. MUSIC LOGIC
+  const bgm = new Audio("https://files.catbox.moe/f13ary.mp3");
+  bgm.loop = true;
+  window.toggleMusic = function() {
+    const btn = document.getElementById('music-circle');
+    if (bgm.paused) {
+      bgm.play();
+      btn.innerHTML = "||";
+    } else {
+      bgm.pause();
+      btn.innerHTML = "▶";
+    }
+  };
+
+  // 6. COLLECTION SAVING LOGIC
+  window.setObtained = async function(cardId, method) {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const card = document.getElementById(cardId);
+    const gachaBtn = card.querySelector('.gacha-btn');
+    const pointsBtn = card.querySelector('.points-btn');
+    const cardRef = ref(db, `users/${user.uid}/cards/${cardId}`);
+
+    const isRemoving = (method === 'gacha' && gachaBtn.classList.contains('gacha-active')) || 
+                       (method === 'points' && pointsBtn.classList.contains('points-active'));
+
+    if (isRemoving) {
+      await set(cardRef, null); 
+      updateCardUI(cardId, null);
+    } else {
+      await set(cardRef, method);
+      updateCardUI(cardId, method);
+      const sfx = document.getElementById(`sfx-${method}`);
+      if (sfx) { sfx.currentTime = 0; sfx.play(); }
+    }
+  };
+
+  function updateCardUI(cardId, method) {
+    const card = document.getElementById(cardId);
+    if (!card) return;
+    const gachaBtn = card.querySelector('.gacha-btn');
+    const pointsBtn = card.querySelector('.points-btn');
+    gachaBtn.classList.remove('gacha-active');
+    pointsBtn.classList.remove('points-active');
+    card.classList.remove('is-obtained');
+    if (method === 'gacha') { gachaBtn.classList.add('gacha-active'); card.classList.add('is-obtained'); }
+    else if (method === 'points') { pointsBtn.classList.add('points-active'); card.classList.add('is-obtained'); }
+  }
+
+  function loadBinderFromCloud(uid) {
+    const userCardsRef = ref(db, `users/${uid}/cards`);
+    get(userCardsRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        for (const cardId in data) { updateCardUI(cardId, data[cardId]); }
+      }
+    });
+  }
 </script>
     
 <style>
