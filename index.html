@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>ψ( ∇ ´ )ψ</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <div id="login-overlay">
+  <div class="login-box">
+    <h1>Member Login</h1>
+    <p>Enter your trainer details to sync your binder!</p>
+    <input type="email" id="email" placeholder="Trainer Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="mockLogin()">Sign In</button>
+    <button onclick="loginWithGoogle()" style="background: #4285F4;">
+  Sign in with Google
+</button>
+    <div class="login-footer">New trainer? <a href="#">Create Account</a>
+    </div>
+  </div>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Micro+5&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jersey+15&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap');
+</style>
+
+<!-- Music -->
+<button id="music-circle" onclick="toggleMusic()">▶</button>
+
+<audio id="sfx-open" src="https://files.catbox.moe/rgzspj.mp3" preload="auto" crossorigin="anonymous"></audio>
+<audio id="sfx-gacha" src="https://files.catbox.moe/kkkfbj.mp3" preload="auto" crossorigin="anonymous"></audio>
+<audio id="sfx-points" src="https://files.catbox.moe/kkkfbj.mp3" preload="auto" crossorigin="anonymous"></audio>
+<audio id="sfx-back" src="https://files.catbox.moe/fjm5qc.mp3" preload="auto" crossorigin="anonymous"></audio>
+<audio id="sfx-play" src="https://files.catbox.moe/fjm5qc.mp3" preload="auto" crossorigin="anonymous"></audio>
+
+<!--Page setup -->
+<h1> ｡‧˚ʚ EUVI's collectionɞ˚ᯓ★ </h1>
+
+<div id="home-screen">
+  <h4> ⋆｡‧˚ʚ Choose Your Pokemon ɞ˚‧｡⋆ </h4>
+  <div class="search-container">
+  <input type="text" id="main-search" placeholder="Search for a pokemon..." oninput="filterCards()">
+</div>
+  
+  <!--Character Selection Section-->
+  <div class="menu-grid">
+    <div class="menu-card mimikyu-link" onclick="openBinder('mimikyu-view')">
+      <img src="https://images.wikidexcdn.net/mwuploads/wikidex/8/85/latest/20200104025223/Mimikyu_EpEc.gif">
+      <h2>Mimikyu</h2>
+    </div>
+
+    <div class="menu-card vulpix-link" onclick="openBinder('vulpix-view')">
+      <img src="https://www.pkparaiso.com/imagenes/espada_escudo/sprites/animados-gigante/vulpix-alola.gif">
+      <h2>Alolan Vulpix</h2>
+    </div>
+    
+    <div class="menu-card gengar-link" onclick="openBinder('gengar-view')">
+      <img src="https://c.tenor.com/7nOwCz3oGYYAAAAC/tenor.gif">
+      <h2>Gengar</h2>
+    </div>
+    
+     <div class="menu-card melotte-link" onclick="openBinder('meloetta-view')">
+      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/56ce70c8-7180-4823-ad03-5f29f2594215/dfqc4aw-d0a0f2b1-3813-4acb-be2c-c60ff48b8cdd.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzU2Y2U3MGM4LTcxODAtNDgyMy1hZDAzLTVmMjlmMjU5NDIxNVwvZGZxYzRhdy1kMGEwZjJiMS0zODEzLTRhY2ItYmUyYy1jNjBmZjQ4YjhjZGQuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.PecLWTtcOhJ1mYE4DO9sSk09KddCLWhLACDSeuQuw1Q">
+      <h2>Meloetta</h2>
+    </div>
+    
+     <div class="menu-card espurr-link" onclick="openBinder('espurr-view')">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRdN-LdC1TUabdonC2eVobzUNnkBzHRZ_NJ6RbDl88tvaNelGCilzPrHEV5TB26szMx4vh8ZF-yYPm5AFDyCJh_mAY8QKyeiOvpLBIxLclrfuG5FXCV2LpQUXBhDSBjq6wP07hh6hBkc5aBJ13QXxufbDKaHaX3uy1I_eWLQxEE-tf3tA_prFnpr-Sbis/s529/0677%20-%20Espurr.gif">
+      <h2>Espurr</h2>
+    </div>
+    
+     <div class="menu-card joltik-link" onclick="openBinder('joltik-view')">
+      <img src="https://images.wikidexcdn.net/mwuploads/wikidex/9/92/latest/20200103224733/Joltik_EpEc.gif">
+      <h2>Joltik</h2>
+    </div>
+    
+     <div class="menu-card yveltal-link" onclick="openBinder('yveltal-view')">
+      <img src="https://fbi.cults3d.com/uploaders/15428889/illustration-file/900d0bd1-5c74-40b2-b6a4-75915e77c447/13577.png">
+      <h2>Yveltal</h2>
+    </div>
+  </div>
+</div>
+
+
+<!--Mimikyu Section-->
+<div id="mimikyu-view" class="binder-page" style="display: none;">
+  <h4> ⋆｡‧˚ʚ Mimikyu Binder ɞ˚‧｡⋆ </h4>
+  <button class="back-btn" onclick="goHome()">⬅ Back</button>
+
+  <div class="card-grid">
+  <div class="pokemon-card" id="card-1" data-points="35">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_006640_00_MIMIKKYU_C.webp" alt="A3-083">
+      <h3> A3-083 </h3>
+      <p>Celestial Guardian : Lunala </p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-1', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-1', 'points')">Points</button>
+      </div>
+    </div>
+
+    <div class="pokemon-card" id="card-2" data-points="70">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_008290_00_MIMIKKYU_U.webp">
+      <h3> A3b-035 </h3>
+      <p>Eevee Grove</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-2', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-2', 'points')">Points</button>
+      </div>
+    </div>
+
+    <div class="pokemon-card" id="card-3">
+      <img src="https://img.game8.co/4180728/f4c001b3ad428a32f4c6c0fba2369da9.png/original" alt="PROMO A-066">
+      <h3> 066 </h3>
+      <p>Promo-A</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-3', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-3', 'points')">Points</button>
+      </div>
+    </div>
+
+    <div class="pokemon-card" id="card-4">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_90_008290_00_MIMIKKYU_C.webp" alt="PROMO A-113">
+      <h3>113</h3>
+      <p>Promo-A</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-4', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-4', 'points')">Points</button>
+      </div>
+    </div>
+
+    <div class="pokemon-card" id="card-5" data-points="500">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_014390_00_MIMIKKYUex_RR.webp" alt="B2-073">
+      <h3>B2-073</h3>
+      <p>Fanastical Parade</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-5', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-5', 'points')">Points</button>
+      </div>
+    </div>
+
+    <div class="pokemon-card" id="card-6" data-points="1250">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_014390_00_MIMIKKYUex_SR.webp" alt="B2-186">
+      <h3>B2-186</h3>
+      <p>Fanastical Parade</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-6', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-6', 'points')">Points</button>
+      </div>
+    </div>
+
+    <div class="pokemon-card" id="card-7" data-points="1250">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_014390_01_MIMIKKYUex_SAR.webp" alt="B2-199">
+      <h3>B2-199</h3>
+      <p>Fanastical Parade</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-7', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-7', 'points')">Points</button>
+      </div>
+    </div>
+  </div> </div> 
+
+<!--Alolan Vulpix Section-->
+<div id="vulpix-view" class="binder-page" style="display: none;">
+  <h4> ⋆｡‧˚ʚ Alolan Vulpix Binder ɞ˚‧｡⋆ </h4>
+  <button class="back-btn" onclick="goHome()">⬅ Back</button>
+
+   <div class="card-grid">
+    <div class="pokemon-card" id="card-v2" data-points="35">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_006210_00_ALOLAROKON_C.webp">
+      <h3>A3-040</h3>
+      <p>Celestial Guardian</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-v2', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-v2', 'points')">Points</button>
+      </div>   
+    </div>
+     
+    <div class="pokemon-card" id="card-v1" data-points="150">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_006220_00_ALOLAKYUKON_R.webp">
+      <h3>A3-041</h3>
+      <p>Celestial Guardian</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-v1', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-v1', 'points')">Points</button>
+      </div>   
+    </div>
+     
+     <div class="pokemon-card" id="card-v3" data-points="400">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_006210_00_ALOLAROKON_AR.webp">
+      <h3>A3-162</h3>
+      <p>Celestial Guardian</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-v3', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-v3', 'points')">Points</button>
+      </div>   
+    </div>
+     
+      <div class="pokemon-card" id="card-v4">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_90_013940_00_ALOLAROKON_R.webp">
+      <h3>032</h3>
+      <p>Promo-B</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-v4', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-v4', 'points')">Points</button>
+      </div>   
+    </div>
+     
+      <div class="pokemon-card" id="card-v5" data-points="35">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_013940_00_ALOLAROKON_C.webp">
+      <h3>B2-028</h3>
+      <p>Fantastical Parade</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-v5', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-v5', 'points')">Points</button>
+      </div>   
+    </div>
+     
+     <div class="pokemon-card" id="card-v6" data-points="500">
+      <img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/pocket/B2/B2_029_EN_SM.webp">
+      <h3>B2-029</h3>
+      <p>Fantastical Parade</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-v6', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-v6', 'points')">Points</button>
+      </div>   
+    </div>
+     
+      <div class="pokemon-card" id="card-v7" data-points="1250">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_013950_00_ALOLAKYUKONex_SR.webp">
+      <h3>B2-182</h3>
+      <p>Fantastical Parade</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-v7', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-v7', 'points')">Points</button>
+      </div>   
+    </div>
+     
+      <div class="pokemon-card" id="card-v8" data-points="1250">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_013950_01_ALOLAKYUKONex_SAR.webp">
+      <h3>B2-196</h3>
+      <p>Fantastical Parade</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-v8', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-v8', 'points')">Points</button>
+      </div>   
+    </div>
+     
+      <div class="pokemon-card" id="card-v9" data-points="">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_90_006220_00_ALOLAKYUKON_AR.webp">
+      <h3>070</h3>
+      <p>Promo-A</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-v9', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-v9', 'points')">Points</button>
+      </div>   
+    </div>
+     
+  </div> </div>
+
+<!--Gengar Section-->
+<div id="gengar-view" class="binder-page" style="display: none;">
+  <h4> ⋆｡‧˚ʚ Gengar Binder ɞ˚‧｡⋆ </h4>
+  <button class="back-btn" onclick="goHome()">⬅ Back</button>
+  
+  <div class="card-grid">
+    <div class="pokemon-card" id="card-g1" data-points="35">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_001200_00_GHOS_C.webp">
+      <h3>A1-120</h3>
+      <p>Genetic Apex : Mewtwo </p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g1', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g1', 'points')">Points</button>
+      </div>   
+    </div> 
+    
+    <div class="pokemon-card" id="card-g8" data-points="35">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_001200_00_GHOS_C.webp">
+      <h3>A4b-151</h3>
+      <p>Deluxe Pack : EX</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g8', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g8', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+     <div class="pokemon-card" id="card-g7" data-points="35">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_001200_01_GHOS_C.webp">
+      <h3>A4b-152</h3>
+      <p>Deluxe Pack : EX</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g7', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g7', 'points')">Points</button>
+      </div>   
+     </div> 
+ 
+    <div class="pokemon-card" id="card-g2" data-points="70">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_001210_00_GHOST_U.webp">
+      <h3>A1-121</h3>
+      <p>Genetic Apex : Mewtwo</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g2', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g2', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+      <div class="pokemon-card" id="card-g9" data-points="70">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_001210_00_GHOST_U.webp">
+      <h3>A4b-153</h3>
+      <p>Deluxe Pack : EX</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g9', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g9', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+     <div class="pokemon-card" id="card-g9" data-points="70">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_001210_01_GHOST_U.webp">
+      <h3>A4b-154</h3>
+      <p>Deluxe Pack : EX</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g9', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g9', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+    <div class="pokemon-card" id="card-g3" data-points="150">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_001220_00_GANGAR_R.webp">
+      <h3>A1-122</h3>
+      <p>Genetic Apex : Mewtwo</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g3', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g3', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+    <div class="pokemon-card" id="card-g4" data-points="500">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_001230_00_GANGARex_RR.webp">
+      <h3>A1-123</h3>
+      <p>Genetic Apex : Mewtwo</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g4', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g4', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+     <div class="pokemon-card" id="card-g10" data-points="500">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_001230_00_GANGARex_RR.webp">
+      <h3>A4b-155</h3>
+      <p>Deluxe Pack : EX</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g10', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g10', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+    <div class="pokemon-card" id="card-g5" data-points="1250">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_001230_00_GANGARex_SR.webp">
+      <h3>A1-261</h3>
+      <p>Genetic Apex : Mewtwo</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g5', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g5', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+     <div class="pokemon-card" id="card-g6" data-points="1250">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_001230_01_GANGARex_SAR.webp">
+      <h3>A1-277</h3>
+      <p>Genetic Apex : Mewtwo</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g6', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g6', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+    <div class="pokemon-card" id="card-g11" data-points="35">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_004550_00_GHOS_C.webp">
+      <h3>A2a-031</h3>
+      <p>Triumphant Light</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g11', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g11', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+    <div class="pokemon-card" id="card-g12" data-points="35">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_004560_00_GHOST_C.webp">
+      <h3>A2a-032</h3>
+      <p>Triumphant Light</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g12', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g12', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+    <div class="pokemon-card" id="card-g13" data-points="70">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_004570_00_GANGAR_U.webp">
+      <h3>A2a-033</h3>
+      <p>Triumphant Light</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g13', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g13', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+    <div class="pokemon-card" id="card-g14" data-points="1000">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_004550_00_GHOS_S.webp">
+      <h3>A3-220</h3>
+      <p>Celestial Guardian : Lunala</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g14', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g14', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+     <div class="pokemon-card" id="card-g15" data-points="1000">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_001210_00_GHOST_S.webp">
+      <h3>A3-221</h3>
+      <p>Celestial Guardian : Lunala</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g15', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g15', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+     <div class="pokemon-card" id="card-g16" data-points="1000">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_001220_00_GANGAR_S.webp">
+      <h3>A3-222</h3>
+      <p>Celestial Guardian : Lunala</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g16', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g16', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+    <div class="pokemon-card" id="card-g17" data-points="1350">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_001230_02_GANGARex_SSR.webp">
+      <h3>A3-234</h3>
+      <p>Celestial Guardian : Lunala</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g17', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g17', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+    <div class="pokemon-card" id="card-g18" data-points="35">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_016050_00_GHOS_C.webp">
+      <h3>B2b-037</h3>
+      <p>Mega Shine</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g18', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g18', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+    <div class="pokemon-card" id="card-g19" data-points="70">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_016420_00_GHOST_U.webp">
+      <h3>B2b-038</h3>
+      <p>Mega Shine</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g19', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g19', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+     <div class="pokemon-card" id="card-g20" data-points="500">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_016430_00_MEGAGANGARex_RR.webp">
+      <h3>B2b-039</h3>
+      <p>Mega Shine</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g20', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g20', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+      <div class="pokemon-card" id="card-g21" data-points="1250">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_016430_00_MEGAGANGARex_SR.webp">
+      <h3>B2b-079</h3>
+      <p>Mega Shine</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g21', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g21', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+     <div class="pokemon-card" id="card-g23" data-points="1000">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_016050_00_GHOS_S.webp">
+      <h3>B2b-100</h3>
+      <p>Mega Shine</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g23', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g23', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+     <div class="pokemon-card" id="card-g24" data-points="1000">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_016420_00_GHOST_S.webp">
+      <h3>B2b-101</h3>
+      <p>Mega Shine</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g24', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g24', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+    <div class="pokemon-card" id="card-g22" data-points="1350">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_016430_01_MEGAGANGARex_SSR.webp">
+      <h3>B2b-114</h3>
+      <p>Mega Shine</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g22', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g22', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+    <div class="pokemon-card" id="card-g25">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_90_016050_00_GHOS_R.webp">
+      <h3>047</h3>
+      <p>Promo-B</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g25', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g25', 'points')">Points</button>
+      </div>   
+     </div> 
+    
+    <div class="pokemon-card" id="card-g26">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_90_002780_00_GHOST_C.webp">
+      <h3>020</h3>
+      <p>Promo-A</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-g26', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-g26', 'points')">Points</button>
+      </div>   
+     </div> 
+       
+  </div> </div>
+
+<!--Meloetta Section-->
+<div id="meloetta-view" class="binder-page" style="display: none;">
+  <h4> ⋆｡‧˚ʚ Meloetta Binder ɞ˚‧｡⋆ </h4>
+  <button class="back-btn" onclick="goHome()">⬅ Back</button>
+  
+   <div class="card-grid">
+   <div class="pokemon-card" id="card-m1" data-points="70">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_014360_00_MELOETTA_U.webp">
+      <h3>B2-070</h3>
+      <p>Fantastical Parade</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-m1', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-m1', 'points')">Points</button>
+      </div>   
+    </div>
+  
+   <div class="pokemon-card" id="card-m2" data-points="2500">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_014360_00_MELOETTA_UR.webp">
+      <h3>B2-233</h3>
+      <p>Fantastical Parade</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-m2', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-m2', 'points')">Points</button>
+      </div>   
+    </div>
+  
+  
+ </div> </div>
+
+<!--Espurr Section-->
+<div id="espurr-view" class="binder-page" style="display: none;">
+  <h4> ⋆｡‧˚ʚ Espurr Binder ɞ˚‧｡⋆ </h4>
+  <button class="back-btn" onclick="goHome()">⬅ Back</button>
+</div> </div>
+
+<!-- Joltik Selection -->
+<div id="joltik-view" class="binder-page" style="display: none;">
+  <h4> ⋆｡‧˚ʚ Joltik Binder ɞ˚‧｡⋆ </h4>
+  <button class="back-btn" onclick="goHome()">⬅ Back</button>
+  
+   <div class="card-grid">
+   <div class="pokemon-card" id="card-j1" data-points="35">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_002420_00_BACHURU_C.webp">
+      <h3>A1a-028</h3>
+      <p>Mythical Island</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-j1', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-j1', 'points')">Points</button>
+      </div>   
+    </div>
+     
+     <div class="pokemon-card" id="card-j2" data-points="70">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_002430_00_DENTULA_U.webp">
+      <h3>A1a-029</h3>
+      <p>Mythical Island</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-j2', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-j2', 'points')">Points</button>
+      </div>   
+    </div>
+     
+     <div class="pokemon-card" id="card-j3" data-points="35">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_008200_00_BACHURU_C.webp">
+      <h3>A3b-026</h3>
+      <p>Eeve Grove</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-j3', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-j3', 'points')">Points</button>
+      </div>   
+    </div>
+     
+     <div class="pokemon-card" id="card-j4" data-points="70">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_008210_00_DENTULA_U.webp">
+      <h3>A3b-026</h3>
+      <p>Eeve Grove</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-j4', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-j4', 'points')">Points</button>
+      </div>   
+    </div>
+     
+     <div class="pokemon-card" id="card-j5" data-points="35">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_011740_00_BACHURU_C.webp">
+      <h3>B1-092</h3>
+      <p>Mega Rising</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-j5', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-j5', 'points')">Points</button>
+      </div>   
+    </div>
+     
+      <div class="pokemon-card" id="card-j6" data-points="70">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_011750_00_DENTULA_U.webp">
+      <h3>B1-093</h3>
+      <p>Mega Rising</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-j6', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-j6', 'points')">Points</button>
+      </div>   
+    </div>
+  </div> </div>
+<!-- Yveltal section -->
+<div id="yveltal-view" class="binder-page" style="display: none;">
+  <h4> ⋆｡‧˚ʚ Yveltal Binder ɞ˚‧｡⋆ </h4>
+  <button class="back-btn" onclick="goHome()">⬅ Back</button>
+  
+   <div class="card-grid">
+   <div class="pokemon-card" id="card-yv1" data-points="150">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_10_014740_00_YVELTAL_R.webp">
+      <h3>B2-108</h3>
+      <p>Fantastical Parade</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-yv1', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-yv1', 'points')">Points</button>
+      </div>   
+    </div>
+
+    <div class="pokemon-card" id="card-yv2" data-points="400">
+      <img src="https://assets.pokemon-zone.com/game-assets/CardPreviews/cPK_20_014740_00_YVELTAL_AR.webp">
+      <h3>B2-175</h3>
+      <p>Fantastical Parade</p>
+      <div class="button-group">
+        <button class="chip gacha-btn" onclick="setObtained('card-yv2', 'gacha')">Gacha</button>
+        <button class="chip points-btn" onclick="setObtained('card-yv2', 'points')">Points</button>
+      </div>   
+    </div>
+  
+ </div> </div>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
