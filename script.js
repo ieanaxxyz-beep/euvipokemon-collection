@@ -189,3 +189,10 @@ auth.onAuthStateChanged((user) => {
     document.getElementById('login-overlay').style.display = 'flex';
   }
 });
+
+window.loginWithGoogle = function() {  // MUST HAVE window.
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider)
+    .then((result) => { console.log("Success!"); })
+    .catch((error) => { alert(error.message); });
+};
