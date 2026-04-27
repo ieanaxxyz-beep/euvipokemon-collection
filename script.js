@@ -1,4 +1,7 @@
 // --- NAVIGATION LOGIC ---
+// This line "borrows" the tools from the web so you don't have to install them
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+
 // This makes the "Sign In" button work
 function loginWithGoogle() {
   const provider = new GoogleAuthProvider();
