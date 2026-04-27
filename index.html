@@ -24,6 +24,52 @@
   </div>
 </div>
 
+  <script type="module">
+  // 1. Import the specific tools we need (Login + Database)
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+  import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
+
+  // 2. Your specific keys from the screenshot
+  const firebaseConfig = {
+    apiKey: "AIzaSyCapNbMuYR4Hz0bERj0SVPE6CiqSAUxK-k",
+    authDomain: "tcg-pocket-d358c.firebaseapp.com",
+    projectId: "tcg-pocket-d358c",
+    storageBucket: "tcg-pocket-d358c.firebasestorage.app",
+    messagingSenderId: "463561133468",
+    appId: "1:463561133468:web:0748d3157516bef3ca0c59",
+    measurementId: "G-MEE71X7GWH"
+  };
+
+  // 3. Start the engine
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getDatabase(app);
+
+  // 4. Make the Login Button work
+  window.loginWithGoogle = function() {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log("Logged in successfully!");
+      })
+      .catch((error) => {
+        alert("Login failed! Did you enable Google in the Firebase Console? Error: " + error.message);
+      });
+  };
+
+  // 5. Check if the user is already logged in
+  onAuthStateChanged(auth, (user) => {
+    const overlay = document.getElementById('login-overlay');
+    if (user) {
+      if (overlay) overlay.style.display = 'none';
+      console.log("Welcome back, trainer!");
+    } else {
+      if (overlay) overlay.style.display = 'flex';
+    }
+  });
+</script>
+    
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Micro+5&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
