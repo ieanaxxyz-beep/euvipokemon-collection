@@ -1,4 +1,4 @@
-/* --- 1. GLOBAL RESET & CURSOR --- */
+/* --- 1. GLOBAL SETUP & CURSOR --- */
 * {
   box-sizing: border-box;
 }
@@ -7,7 +7,6 @@ html, body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  /* Ensures cursor works on the whole screen */
   cursor: url('https://www.rw-designer.com/cursor-view/143914.png'), auto;
 }
 
@@ -17,11 +16,12 @@ body {
   background-attachment: fixed;
   background-position: center;
   background-color: #fdf6ff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow-x: hidden; /* Prevents side-scrolling */
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  overflow-x: hidden;
 }
 
-/* Force custom pointer on all interactive elements */
+/* Custom Pointers for Interactive Elements */
 button, .menu-card, .pokemon-card, .chip, .back-btn, #music-circle {
   cursor: url('https://www.rw-designer.com/cursor-view/143914.png'), pointer !important;
 }
@@ -43,15 +43,13 @@ button, .menu-card, .pokemon-card, .chip, .back-btn, #music-circle {
   padding: 40px;
   border-radius: 30px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-  text-align: center;
   width: 90%;
   max-width: 400px;
 }
 
-/* --- 3. HEADER & TYPING ANIMATION --- */
+/* --- 3. HEADER & SEARCH BAR --- */
 #home-screen {
   padding: 40px 20px;
-  text-align: center;
 }
 
 h1 {
@@ -65,8 +63,8 @@ h1 {
 }
 
 @keyframes logoFloat {
-  0%, 100% { transform: translateY(0px) rotate(-2deg); }
-  50% { transform: translateY(-15px) rotate(2deg); }
+  0%, 100% { transform: perspective(1000px) rotateY(-10deg) translateY(0px); }
+  50% { transform: perspective(1000px) rotateY(10deg) translateY(-15px); }
 }
 
 h4 {
@@ -84,61 +82,82 @@ h4 {
 @keyframes typing { from { width: 0 } to { width: 100% } }
 @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #ff85a1 } }
 
-/* --- 4. SEARCH BAR --- */
 .search-container {
   margin: 0 auto 40px auto;
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   max-width: 450px;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 10px 20px;
+  border-radius: 50px;
 }
 
 #main-search {
+  font-family: 'VT323', monospace;
+  font-size: 1.4rem;
   padding: 12px 20px;
   border: 3px solid #ffb7c5;
   border-radius: 30px;
   width: 100%;
   outline: none;
-  font-family: 'VT323', monospace;
-  font-size: 1.2rem;
 }
 
-/* --- 5. BINDER MENU GRID --- */
+/* --- 4. BINDER MENU GRID (Matching Video) --- */
 .menu-grid {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  gap: 30px;
   justify-content: center;
+  gap: 40px;
   margin-top: 20px;
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .menu-card {
   background: white;
-  border-radius: 25px;
+  border-radius: 30px;
   padding: 20px;
-  width: 220px;
-  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  width: 240px;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 .menu-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-15px) rotate(2deg);
   border: 3px solid #ffafbd;
+  box-shadow: 0 15px 35px rgba(255, 175, 189, 0.4);
 }
 
 .menu-card img {
   width: 100%;
   height: 180px;
   object-fit: contain;
+  margin-bottom: 15px;
 }
 
-/* --- 6. POKEMON CARD GRID (The Fix) --- */
+.menu-card h2 {
+  font-family: "VT323", monospace;
+  font-size: 1.8rem;
+  color: #444;
+  margin: 0;
+}
+
+/* --- 5. POKEMON CARD GRID & CARDS --- */
 .card-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 20px;
   justify-content: center;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -146,54 +165,56 @@ h4 {
 .pokemon-card {
   position: relative;
   background: white;
-  width: 200px; /* Standard TCG card ratio feel */
+  width: 210px;
   padding: 15px;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  transition: 0.4s ease;
-  z-index: 1;
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .pokemon-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  z-index: 10;
+  transform: translateY(-12px) scale(1.03);
+  z-index: 100;
 }
 
 .pokemon-card img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
-/* --- 7. BUTTONS & CHIPS --- */
+/* --- 6. BUTTONS & CHIPS (FIXED CLICKING) --- */
 .button-group {
   display: flex;
-  gap: 5px;
+  gap: 8px;
   justify-content: center;
-  margin-top: 12px;
+  margin-top: 15px;
   position: relative;
-  z-index: 20; /* Sits above the holo effect */
+  z-index: 50; /* Sits HIGHER than the holographic layer */
 }
 
 .chip {
   border: none;
   background: #f0f0f0;
-  padding: 6px 12px;
-  border-radius: 15px;
-  font-size: 0.7rem;
+  padding: 8px 14px;
+  border-radius: 20px;
   font-weight: bold;
+  font-size: 12px;
+  box-shadow: 0 3px 0 #ddd;
   transition: 0.2s;
 }
 
-/* Active States */
 .chip.gacha-active, .chip.points-active {
   background: #ff85a1 !important;
   color: white !important;
-  box-shadow: 0 3px 0 #d66d85;
+  box-shadow: 0 3px 0 #d66d85 !important;
 }
 
-/* --- 8. OBTAINED / HOLO EFFECT --- */
+.chip:hover { transform: scale(1.1); background-color: #ffafbd; color: white; }
+
+/* --- 7. OBTAINED / HOLOGRAPHIC EFFECT --- */
 .pokemon-card.is-obtained {
-  border: 3px solid #ffafbd;
+  border: 3px solid #ffafbd !important;
+  box-shadow: 0 15px 30px rgba(255, 175, 189, 0.4);
 }
 
 .pokemon-card.is-obtained::after {
@@ -201,29 +222,32 @@ h4 {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  border-radius: 20px;
-  pointer-events: none; /* Allows you to click buttons underneath */
-  z-index: 5;
+  border-radius: 22px;
+  pointer-events: none !important; /* CRITICAL: Fixes the dead buttons */
+  z-index: 5; /* Sits BELOW the buttons */
   background: linear-gradient(
-    135deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.4) 50%,
-    rgba(255,255,255,0) 100%
+    125deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
   );
   background-size: 200% 200%;
-  animation: holo-shimmer 3s linear infinite;
+  animation: holo-shimmer 4s ease infinite;
 }
 
 @keyframes holo-shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* --- 9. MUSIC FLOATING ICON --- */
+/* --- 8. MUSIC FLOATING ICON --- */
 #music-circle {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  top: 150px; left: 60px;
+  width: 80px; height: 80px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: "Micro 5", sans-serif;
   font-size: 3rem;
   color: #ff85a1;
   z-index: 9999;
@@ -232,16 +256,25 @@ h4 {
 
 @keyframes floatIcon {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-15px); }
 }
 
-/* --- 10. UTILITY --- */
+/* --- 9. NAVIGATION --- */
 .back-btn {
-  margin: 20px auto;
-  padding: 10px 30px;
+  display: block;
+  margin: 40px auto;
   background: white;
   border: 3px solid #ffafbd;
+  padding: 10px 25px;
+  border-radius: 20px;
   color: #ff85a1;
   font-family: "VT323", monospace;
-  border-radius: 20px;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background: #ffafbd;
+  color: white;
+  transform: translateY(-3px);
 }
