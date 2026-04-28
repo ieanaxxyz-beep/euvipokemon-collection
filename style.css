@@ -1,8 +1,13 @@
-/* --- 1. GLOBAL & SETUP --- */
+/* --- 1. GLOBAL RESET & CURSOR --- */
+* {
+  box-sizing: border-box;
+}
+
 html, body {
-  min-height: 100vh; 
+  min-height: 100vh;
   margin: 0;
   padding: 0;
+  /* Ensures cursor works on the whole screen */
   cursor: url('https://www.rw-designer.com/cursor-view/143914.png'), auto;
 }
 
@@ -12,13 +17,12 @@ body {
   background-attachment: fixed;
   background-position: center;
   background-color: #fdf6ff;
-  text-align: center;
-  font-family: 'Segoe UI', "Times New Roman", serif;
-  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden; /* Prevents side-scrolling */
 }
 
-/* Ensure buttons use the custom pointer */
-button, .menu-card, .pokemon-card, .chip, .back-btn {
+/* Force custom pointer on all interactive elements */
+button, .menu-card, .pokemon-card, .chip, .back-btn, #music-circle {
   cursor: url('https://www.rw-designer.com/cursor-view/143914.png'), pointer !important;
 }
 
@@ -27,7 +31,7 @@ button, .menu-card, .pokemon-card, .chip, .back-btn {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(255, 175, 189, 0.9);
+  background: rgba(255, 175, 189, 0.95);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,188 +48,200 @@ button, .menu-card, .pokemon-card, .chip, .back-btn {
   max-width: 400px;
 }
 
-.login-box input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 2px solid #ffafbd;
-  border-radius: 15px;
+/* --- 3. HEADER & TYPING ANIMATION --- */
+#home-screen {
+  padding: 40px 20px;
+  text-align: center;
 }
 
-.login-box button {
-  background: #ff85a1;
-  color: white;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 20px;
-  font-weight: bold;
-  margin-top: 20px;
-  width: 100%;
-}
-
-/* --- 3. HEADER & SEARCH --- */
 h1 {
   font-family: "Micro 5", sans-serif;
   font-size: 5rem;
   color: #ff85a1;
   text-transform: uppercase;
-  margin: 10px auto;
+  margin: 0 auto 10px auto;
   text-shadow: 2px 2px 0px #fff, 4px 4px 0px #fb98ad;
-  animation: logoFloat 4s ease-in-out infinite !important;
-  letter-spacing: 4px;
+  animation: logoFloat 4s ease-in-out infinite;
 }
 
 @keyframes logoFloat {
-  0%, 100% { transform: perspective(1000px) rotateY(-20deg) rotateX(15deg) skewX(-10deg) translateY(0px); }
-  50% { transform: perspective(1000px) rotateY(-20deg) rotateX(15deg) skewX(-10deg) translateY(-15px); } 
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50% { transform: translateY(-15px) rotate(2deg); }
 }
 
 h4 {
   font-family: "VT323", monospace;
   font-size: 2.2rem;
   color: #ff85a1;
-  margin: -15px auto 30px auto;
-  width: max-content; 
-  overflow: hidden;
+  margin: 0 auto 30px auto;
+  width: fit-content;
   white-space: nowrap;
-  animation: typing 3s steps(40, end) forwards, blink-caret .75s step-end infinite;
+  overflow: hidden;
+  border-right: 3px solid #ff85a1;
+  animation: typing 3s steps(30, end), blink-caret .75s step-end infinite;
 }
 
-@keyframes typing { from { width: 0; } to { width: 100%; } }
-@keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: #ff85a1; } }
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #ff85a1 } }
 
+/* --- 4. SEARCH BAR --- */
 .search-container {
-  margin: 20px auto;
+  margin: 0 auto 40px auto;
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 12px;
+  gap: 10px;
   max-width: 450px;
-  background: rgba(255, 255, 255, 0.4);
-  padding: 10px 20px;
-  border-radius: 50px;
 }
 
 #main-search {
-  font-family: 'VT323', monospace;
-  font-size: 1.4rem;
   padding: 12px 20px;
   border: 3px solid #ffb7c5;
   border-radius: 30px;
   width: 100%;
   outline: none;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
 }
 
-/* --- 4. NAVIGATION & BINDERS --- */
-.back-btn {
-  display: block; 
-  margin: 40px auto; 
-  background: white;
-  border: 3px solid #ffafbd;
-  padding: 10px 25px;
-  border-radius: 20px;
-  color: #ff85a1;
-  font-family: "VT323", monospace;
-  transition: 0.3s;
-}
-
+/* --- 5. BINDER MENU GRID --- */
 .menu-grid {
-  display: flex; gap: 50px; flex-wrap: wrap; justify-content: center; margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .menu-card {
-  background: white; border-radius: 30px; padding: 20px; width: 200px;
-  display: flex; flex-direction: column; align-items: center;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: white;
+  border-radius: 25px;
+  padding: 20px;
+  width: 220px;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
-.menu-card:hover { transform: translateY(-12px) rotate(2deg); border: 2px solid #ffafbd; }
+.menu-card:hover {
+  transform: translateY(-10px);
+  border: 3px solid #ffafbd;
+}
 
-/* --- 5. THE CARD GRID & POKEMON CARDS --- */
+.menu-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+}
+
+/* --- 6. POKEMON CARD GRID (The Fix) --- */
 .card-grid {
-  display: flex !important; flex-wrap: wrap; gap: 20px; justify-content: center;
-  max-width: 1100px; margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .pokemon-card {
   position: relative;
   background: white;
-  width: 220px;
+  width: 200px; /* Standard TCG card ratio feel */
   padding: 15px;
-  border-radius: 25px;
-  box-shadow: 0 10px 25px rgba(150, 100, 255, 0.1);
-  border: 3px solid transparent;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  overflow: visible; /* Allows buttons and points to pop out */
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: 0.4s ease;
+  z-index: 1;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  z-index: 10;
 }
 
 .pokemon-card img {
   width: 100%;
-  border-radius: 15px;
-  margin-bottom: 10px;
-  transition: 0.3s;
+  border-radius: 10px;
 }
 
-.pokemon-card:hover {
-  transform: translateY(-15px) scale(1.03);
-  z-index: 100;
-}
-
-/* --- 6. BUTTONS & CHIPS (Fixed Clicking) --- */
+/* --- 7. BUTTONS & CHIPS --- */
 .button-group {
-  position: relative;
-  z-index: 50; /* Sits higher than any holo effect */
   display: flex;
-  gap: 8px;
+  gap: 5px;
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 12px;
+  position: relative;
+  z-index: 20; /* Sits above the holo effect */
 }
 
 .chip {
   border: none;
   background: #f0f0f0;
-  padding: 8px 14px;
-  border-radius: 20px;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.7rem;
   font-weight: bold;
-  font-size: 12px;
   transition: 0.2s;
-  box-shadow: 0 3px 0 #ddd;
 }
 
-/* Fix: The Active State Logic */
+/* Active States */
 .chip.gacha-active, .chip.points-active {
   background: #ff85a1 !important;
   color: white !important;
-  box-shadow: 0 4px 0 #d66d85 !important;
-  transform: translateY(-2px);
+  box-shadow: 0 3px 0 #d66d85;
 }
 
-.chip:hover { transform: scale(1.1); background-color: #ffafbd; color: white; }
-
-/* --- 7. HOLOGRAPHIC EFFECT (Cleaned Up) --- */
+/* --- 8. OBTAINED / HOLO EFFECT --- */
 .pokemon-card.is-obtained {
-  border: 3px solid #ffafbd !important;
-  box-shadow: 0 15px 35px rgba(255, 175, 189, 0.6);
+  border: 3px solid #ffafbd;
 }
 
-/* The Holo Streak */
 .pokemon-card.is-obtained::after {
   content: "";
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  border-radius: 22px;
-  pointer-events: none !important; /* CRITICAL: Allows click-through */
-  z-index: 5; /* Stays below buttons (z-index 50) */
+  border-radius: 20px;
+  pointer-events: none; /* Allows you to click buttons underneath */
+  z-index: 5;
   background: linear-gradient(
-    125deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.5) 50%,
-    rgba(255, 255, 255, 0) 100%
+    135deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.4) 50%,
+    rgba(255,255,255,0) 100%
   );
   background-size: 200% 200%;
-  animation: holo-shimmer 4s ease infinite;
+  animation: holo-shimmer 3s linear infinite;
 }
 
 @keyframes holo-shimmer {
-  0% { background-position: 0% 50%; }
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* --- 9. MUSIC FLOATING ICON --- */
+#music-circle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  font-size: 3rem;
+  color: #ff85a1;
+  z-index: 9999;
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* --- 10. UTILITY --- */
+.back-btn {
+  margin: 20px auto;
+  padding: 10px 30px;
+  background: white;
+  border: 3px solid #ffafbd;
+  color: #ff85a1;
+  font-family: "VT323", monospace;
+  border-radius: 20px;
+}
