@@ -1,567 +1,567 @@
 #login-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 175, 189, 0.9); /* Your signature pink, but solid */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000; /* Stays above everything! */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 175, 189, 0.9); /* Your signature pink, but solid */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000; /* Stays above everything! */
 }
 
 .login-box {
-  background: white;
-  padding: 40px;
-  border-radius: 30px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-  text-align: center;
-  width: 90%;
-  max-width: 400px;
+  background: white;
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
 }
 
 .login-box input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 2px solid #ffafbd;
-  border-radius: 15px;
-  font-family: 'Segoe UI', sans-serif;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid #ffafbd;
+  border-radius: 15px;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .login-box button {
-  background: #ff85a1;
-  color: white;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 20px;
-  width: 100%;
+  background: #ff85a1;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
 }
 
 html, body {
-  min-height: 100vh; 
-  margin: 0;
-  padding: 0;
-  /* This ensures the cursor works even on the very edges of the screen */
-  cursor: url('https://www.rw-designer.com/cursor-view/143914.png'), auto;
+  min-height: 100vh; 
+  margin: 0;
+  padding: 0;
+  /* This ensures the cursor works even on the very edges of the screen */
+  cursor: url('https://www.rw-designer.com/cursor-view/143914.png'), auto;
 }
 
 /* music */
 #music-circle {
-  position: fixed;
-  top: 150px; 
-  left: 60px;
-  
-  /* The "Invisible Hitbox" Expansion */
-  width: 80px;           /* Large area to click */
-  height: 80px;          /* Large area to click */
-  background: transparent; /* Makes the whole square clickable but invisible */
-  border: none;
-  padding: 0;
-  
-  /* Centering the icon inside the hit-zone */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  /* Pixel Font styling */
-  font-family: "Micro 5", sans-serif;
-  font-size: 3rem; 
-  color: #ff85a1;
-  text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8);
-  
-  cursor: pointer;
-  z-index: 9999;
-  
-  /* Floating Animation */
-  animation: floatIcon 3s ease-in-out infinite;
-  transition: transform 0.2s ease, color 0.2s ease;
-  
-  /* Helpful for testing: uncomment the line below to see the box */
-  /* border: 1px solid red; */
+  position: fixed;
+  top: 150px; 
+  left: 60px;
+  
+  /* The "Invisible Hitbox" Expansion */
+  width: 80px;           /* Large area to click */
+  height: 80px;          /* Large area to click */
+  background: transparent; /* Makes the whole square clickable but invisible */
+  border: none;
+  padding: 0;
+  
+  /* Centering the icon inside the hit-zone */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Pixel Font styling */
+  font-family: "Micro 5", sans-serif;
+  font-size: 3rem; 
+  color: #ff85a1;
+  text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8);
+  
+  cursor: pointer;
+  z-index: 9999;
+  
+  /* Floating Animation */
+  animation: floatIcon 3s ease-in-out infinite;
+  transition: transform 0.2s ease, color 0.2s ease;
+  
+  /* Helpful for testing: uncomment the line below to see the box */
+  /* border: 1px solid red; */
 }
 
 #music-circle:hover {
-  color: #ffafbd;
-  transform: scale(1.1); /* Slightly smaller scale so it doesn't jitter */
+  color: #ffafbd;
+  transform: scale(1.1); /* Slightly smaller scale so it doesn't jitter */
 }
 
 /* The "Slightly Floating" Logic */
 @keyframes floatIcon {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 /* The "Slightly Floating" Logic */
 @keyframes floatIcon {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 /* --- 1. THE PAGE SETUP --- */
 body {
-  /* Replace the URL below with your background image link */
-  background-image: url('https://i.pinimg.com/736x/37/7d/b6/377db6cea8ba77dc96fa49a4c9e08a15.jpg');
-  
-  /* This ensures the image covers the whole screen without stretching */
-  background-size: cover;
-  
-  /* This keeps the image in place while you scroll the binder */
-  background-attachment: fixed;
-  
-  /* This centers the image */
-  background-position: center;
-  
-  /* Fallback color in case the image doesn't load */
-  background-color: #fdf6ff;
-  text-align: center;
-  background-color: #fdf6ff; 
-  font-family: 'Segoe UI', Times New Roman;
-  margin: 0;
-  padding: 20px;
- 
-  /* Ensure buttons and cards use the "pointer" version of your custom cursor */
+  /* Replace the URL below with your background image link */
+  background-image: url('https://i.pinimg.com/736x/37/7d/b6/377db6cea8ba77dc96fa49a4c9e08a15.jpg');
+  
+  /* This ensures the image covers the whole screen without stretching */
+  background-size: cover;
+  
+  /* This keeps the image in place while you scroll the binder */
+  background-attachment: fixed;
+  
+  /* This centers the image */
+  background-position: center;
+  
+  /* Fallback color in case the image doesn't load */
+  background-color: #fdf6ff;
+  text-align: center;
+  background-color: #fdf6ff; 
+  font-family: 'Segoe UI', Times New Roman;
+  margin: 0;
+  padding: 20px;
+ 
+  /* Ensure buttons and cards use the "pointer" version of your custom cursor */
 button, .menu-card, .pokemon-card, .chip {
-  cursor: url('https://www.rw-designer.com/cursor-view/143914.png'), pointer !important;
+  cursor: url('https://www.rw-designer.com/cursor-view/143914.png'), pointer !important;
 }
 
 /* --- 2. THE MENU (Fixing the Vulpix Tower) --- */
 #home-screen {
-  text-align:  center;
-  max-width: 1000px;
-  margin: 0 auto; /* Centers the menu on the page */
+  text-align:  center;
+  max-width: 1000px;
+  margin: 0 auto; /* Centers the menu on the page */
 }
 /* Logo-style Title */
 h1 {
-  font-family: "Micro 5", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 5rem; /* This font is thin, so we can make it huge! */
- color: #ff85a1;
-  text-transform: uppercase;
-  display: table;
-  margin: 10px auto 0 auto;
-  text-shadow: 2px 2px 0px #fff, 4px 4px 0px #fb98ad, 6px 6px 0px #fb98ad, 10px 10px 20px rgba(255, 175, 189, 0.3);
-  
-  /* Make sure this line is exactly like this */
-  animation: logoFloat 4s ease-in-out infinite !important;
-  }
-  
-  letter-spacing: 4px;
+  font-family: "Micro 5", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 5rem; /* This font is thin, so we can make it huge! */
+ color: #ff85a1;
+  text-transform: uppercase;
+  display: table;
+  margin: 10px auto 0 auto;
+  text-shadow: 2px 2px 0px #fff, 4px 4px 0px #fb98ad, 6px 6px 0px #fb98ad, 10px 10px 20px rgba(255, 175, 189, 0.3);
+  
+  /* Make sure this line is exactly like this */
+  animation: logoFloat 4s ease-in-out infinite !important;
+  }
+  
+  letter-spacing: 4px;
 }
 /* This makes it drift up and down smoothly */
 @keyframes logoFloat {
-  0%, 100% {
-    transform: perspective(1000px) rotateY(-20deg) rotateX(15deg) skewX(-10deg) translateY(0px);
-  }
-  50% {
-    transform: perspective(1000px) rotateY(-20deg) rotateX(15deg) skewX(-10deg) translateY(-15px);
-  } 
+  0%, 100% {
+    transform: perspective(1000px) rotateY(-20deg) rotateX(15deg) skewX(-10deg) translateY(0px);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(-20deg) rotateX(15deg) skewX(-10deg) translateY(-15px);
+  } 
 }
 
 p {
-  font-family: "Quantico", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-  color: #888; /* Soft grey so it doesn't distract from the card ID */
-  margin: 5px 0 20px 0;
-  text-transform: capitalize;
-  letter-spacing: 0.05px;
+  font-family: "Quantico", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  color: #888; /* Soft grey so it doesn't distract from the card ID */
+  margin: 5px 0 20px 0;
+  text-transform: capitalize;
+  letter-spacing: 0.05px;
 }
 
 h4 {
-  font-family: "VT323", monospace;
-  font-size: 2.2rem;
+  font-family: "VT323", monospace;
+  font-size: 2.2rem;
 color: #ff85a1;
-  text-align: center;
-  display: block; /* Block works better with auto margins for centering */
-  margin: -15px auto 30px auto; /* Pulls h4 closer to h1 */
-  
-  /* FIXED: Dynamic width logic */
-  width: max-content; 
-  max-width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  
-  /* The Animation */
-  animation: 
-    typing 3s steps(40, end) forwards,
-    blink-caret .75s step-end infinite;
+  text-align: center;
+  display: block; /* Block works better with auto margins for centering */
+  margin: -15px auto 30px auto; /* Pulls h4 closer to h1 */
+  
+  /* FIXED: Dynamic width logic */
+  width: max-content; 
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  
+  /* The Animation */
+  animation: 
+    typing 3s steps(40, end) forwards,
+    blink-caret .75s step-end infinite;
 }
 
 /* Updated Typing Animation */
 @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; } /* 100% of the max-content width */
+  from { width: 0; }
+  to { width: 100%; } /* 100% of the max-content width */
 }
 
 /* Updated Blinking Cursor */
 @keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: #ff85a1; } /* PINK blinking cursor */
+  from, to { border-color: transparent; }
+  50% { border-color: #ff85a1; } /* PINK blinking cursor */
 }
 
 /* Container to keep things tidy */
 .search-container {
-  margin: 20px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  max-width: 450px;
-  background: rgba(255, 255, 255, 0.4); /* Soft cloud behind the search */
-  padding: 10px 20px;
-  border-radius: 50px; /* Makes the whole bar pill-shaped */
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  max-width: 450px;
+  background: rgba(255, 255, 255, 0.4); /* Soft cloud behind the search */
+  padding: 10px 20px;
+  border-radius: 50px; /* Makes the whole bar pill-shaped */
 }
 
 /* The Search Input - Round and Soft */
 #main-search {
-  font-family: 'VT323', monospace;
-  font-size: 1.4rem;
-  padding: 12px 20px;
-  background: white;
-  border: 3px solid #ffb7c5; /* Softer pink border */
-  border-radius: 30px; /* Round pill shape */
-  color: #ff85a1;
-  outline: none;
-  width: 100%;
-  box-shadow: 0 4px 0px #ffb7c5; /* Simple 2D cute shadow */
+  font-family: 'VT323', monospace;
+  font-size: 1.4rem;
+  padding: 12px 20px;
+  background: white;
+  border: 3px solid #ffb7c5; /* Softer pink border */
+  border-radius: 30px; /* Round pill shape */
+  color: #ff85a1;
+  outline: none;
+  width: 100%;
+  box-shadow: 0 4px 0px #ffb7c5; /* Simple 2D cute shadow */
 }
 
 /* The Search Button - The "Cute Bubble" */
 .search-container button {
-  width: 55px;
-  height: 55px;
-  background: linear-gradient(145deg, #ffafbd, #ff85a1); /* Soft pink gradient */
-  color: white;
-  border: none;
-  border-radius: 50%; /* Perfect Circle */
-  font-size: 1.5rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 5px 0px #d66d85; /* Depth shadow for a 'button' feel */
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(145deg, #ffafbd, #ff85a1); /* Soft pink gradient */
+  color: white;
+  border: none;
+  border-radius: 50%; /* Perfect Circle */
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 0px #d66d85; /* Depth shadow for a 'button' feel */
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
 }
 
 /* Hover effects for that "Squishy" feel */
 .search-container button:hover {
-  transform: scale(1.1) rotate(5deg); /* Grows and tilts slightly */
-  background: linear-gradient(145deg, #ffc1cc, #ffa1b5);
+  transform: scale(1.1) rotate(5deg); /* Grows and tilts slightly */
+  background: linear-gradient(145deg, #ffc1cc, #ffa1b5);
 }
 
 .search-container button:active {
-  transform: translateY(3px); /* Sinks down when clicked */
-  box-shadow: 0 2px 0px #d66d85;
+  transform: translateY(3px); /* Sinks down when clicked */
+  box-shadow: 0 2px 0px #d66d85;
 }
 
 /* Custom placeholder for extra cuteness */
 #main-search::placeholder {
-  color: #ffb7c5;
-  font-style: italic;
+  color: #ffb7c5;
+  font-style: italic;
 }
 
 .menu-grid {
-  display: flex;
-  gap: 50px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: 50px;
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
 }
 
 .menu-card {
-  background: white;
-  border-radius: 30px;
-  padding: 20px;
-  width: 200px; 
-  height: auto;
-  
-  /* ADD THESE LINES: This locks the internal content to the center */
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  justify-content: center;
-  
-  cursor: pointer;
-  box-shadow: 0 10px 25px rgba(150, 100, 255, 0.1);
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: white;
+  border-radius: 30px;
+  padding: 20px;
+  width: 200px; 
+  height: auto;
+  
+  /* ADD THESE LINES: This locks the internal content to the center */
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(150, 100, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .menu-card img {
-  width: 100%;       /* Makes the image fit inside the card */
-  height: 180px;     /* Forces the image to stay a reasonable height */
-  object-fit: contain; /* Prevents the Pokémon from stretching */
-  margin-bottom: 10px;
+  width: 100%;       /* Makes the image fit inside the card */
+  height: 180px;     /* Forces the image to stay a reasonable height */
+  object-fit: contain; /* Prevents the Pokémon from stretching */
+  margin-bottom: 10px;
 }
 
 .menu-card h2 {
-  font-size: 1.1rem;
-  margin: 10px 0 0 0; /* Ensures it has space below the image */
-  color: #444;
-  letter-spacing: 0.5px;
-  
-  /* ADD THESE LINES: This forces the text itself to stay centered */
-  width: 100%;
-  text-align: center;
-  display: block;
+  font-size: 1.1rem;
+  margin: 10px 0 0 0; /* Ensures it has space below the image */
+  color: #444;
+  letter-spacing: 0.5px;
+  
+  /* ADD THESE LINES: This forces the text itself to stay centered */
+  width: 100%;
+  text-align: center;
+  display: block;
 }
 
 /* This targets the Mimikyu and Vulpix binders on the home screen */
 .menu-card:hover {
-  transform: translateY(-12px) rotate(2deg); /* Lifts and gives a cute slight tilt */
-  box-shadow: 0 15px 35px rgba(150, 100, 255, 0.2); /* A soft purple-ish glow */
-  border: 2px solid #ffafbd; /* Highlights the border in pink */
+  transform: translateY(-12px) rotate(2deg); /* Lifts and gives a cute slight tilt */
+  box-shadow: 0 15px 35px rgba(150, 100, 255, 0.2); /* A soft purple-ish glow */
+  border: 2px solid #ffafbd; /* Highlights the border in pink */
 }
 
 /* Makes sure the transition is smooth when the mouse leaves */
 .menu-card {
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* --- NAVIGATION BUTTON --- */
 
 .back-btn {
-  /* This centers it horizontally */
-  display: block; 
-  margin: 40px auto; 
-  
-  /* Styling to match your aesthetic */
-  background: white;
-  border: 3px solid #ffafbd;
-  padding: 10px 25px;
-  border-radius: 20px;
-  color: #ff85a1;
-  font-family: "VT323", monospace;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 0px #ffafbd;
+  /* This centers it horizontally */
+  display: block; 
+  margin: 40px auto; 
+  
+  /* Styling to match your aesthetic */
+  background: white;
+  border: 3px solid #ffafbd;
+  padding: 10px 25px;
+  border-radius: 20px;
+  color: #ff85a1;
+  font-family: "VT323", monospace;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 0px #ffafbd;
 }
 
 .back-btn:hover {
-  background: #ffafbd;
-  color: white;
-  transform: translateY(-3px);
-  box-shadow: 0 7px 0px #ff85a1;
+  background: #ffafbd;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 7px 0px #ff85a1;
 }
 
 .back-btn:active {
-  transform: translateY(2px);
-  box-shadow: 0 0px 0px #ff85a1;
+  transform: translateY(2px);
+  box-shadow: 0 0px 0px #ff85a1;
 }
 
 /* 2. THE GRID (The fix for your stacking issue) */
 
 .card-grid {
-  display: flex !important;   /* Force flexbox */
-  flex-direction: row;        /* Cards go left-to-right */
-  flex-wrap: wrap;            /* Start new row when out of space */
-  gap: 20px;                  /* Space between cards */
+  display: flex !important;   /* Force flexbox */
+  flex-direction: row;        /* Cards go left-to-right */
+  flex-wrap: wrap;            /* Start new row when out of space */
+  gap: 20px;                  /* Space between cards */
 justify-content: center; /* This centers the cards inside the grid */
-  width: 100%;             /* Don't take up the full width, leave some breathing room */
-  margin: 0 auto;         /* This centers the grid itself on the page */
-  max-width: 1100px;
+  width: 100%;             /* Don't take up the full width, leave some breathing room */
+  margin: 0 auto;         /* This centers the grid itself on the page */
+  max-width: 1100px;
 }
 
 /* 3. THE CARD */
 
 .pokemon-card {
-  background: white;
-  width: 220px;               /* Fixed width keeps them side-by-side */
-  padding: 15px ;
-  border-radius: 25px;
-  box-shadow: 0 10px 25px rgba(150, 100, 255, 0.1);
-  text-align: center;
-  border: 3px solid transparent;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: white;
+  width: 220px;               /* Fixed width keeps them side-by-side */
+  padding: 15px ;
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(150, 100, 255, 0.1);
+  text-align: center;
+  border: 3px solid transparent;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .pokemon-card img {
-  width: 100%;
-  border-radius: 15px;
-  margin-bottom: 10px;
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 10px;
 }
 
 /* 1. The card needs to be the anchor */
 .pokemon-card {
-  position: relative;
+  position: relative;
 }
 
 /* 2. This creates the pop-up ONLY when you press/hold the card */
 .pokemon-card:active::before {
-  content: attr(data-points) " pts";
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255, 175, 189, 0.95); /* Your pink theme */
-  color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 1.2rem;
-  z-index: 100;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  pointer-events: none; /* So it doesn't interfere with your mouse */
+  content: attr(data-points) " pts";
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 175, 189, 0.95); /* Your pink theme */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  z-index: 100;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  pointer-events: none; /* So it doesn't interfere with your mouse */
 }
 
 /* 3. Optional: Make the card blur slightly when showing points */
 .pokemon-card:active img {
-  filter: blur(2px) brightness(0.8);
+  filter: blur(2px) brightness(0.8);
 }
 
 /* 4. THE CUTE BOUNCY BUTTONS */
 .button-group {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-top: 15px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 15px;
 }
 
 .chip {
-  border: none;
-  background: #f0f0f0;
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 12px;
-  cursor: pointer;
-  transition: 0.2s;
-  box-shadow: 0 3px 0 #ddd; /* 3D effect */
+  border: none;
+  background: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 3px 0 #ddd; /* 3D effect */
 }
 
 .chip:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 0 #ccc;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 #ccc;
 }
 
 .chip:active {
-  transform: translateY(2px);
-  box-shadow: 0 0px 0 #ccc;
+  transform: translateY(2px);
+  box-shadow: 0 0px 0 #ccc;
 }
 
 /* 5. ACTIVE STATES (Pink Theme for both!) */
 .gacha-active, .points-active {
-  background: linear-gradient(180deg, #ffafbd, #ffc3a0) !important;
-  color: white !important;
-  border-color: #ff9aa2 !important;
-  box-shadow: 0 4px 0 #ff85a1 !important;
+  background: linear-gradient(180deg, #ffafbd, #ffc3a0) !important;
+  color: white !important;
+  border-color: #ff9aa2 !important;
+  box-shadow: 0 4px 0 #ff85a1 !important;
 }
 
 /* Optional: Add this class to make the card glow pink when selected */
 .card-glow {
-  border-color: #ffafbd !important;
-  transform: scale(1.05); /* Makes the card "pop" */
-  box-shadow: 0 12px 30px rgba(255, 175, 189, 0.4) !important;
+  border-color: #ffafbd !important;
+  transform: scale(1.05); /* Makes the card "pop" */
+  box-shadow: 0 12px 30px rgba(255, 175, 189, 0.4) !important;
 }
 /* --- THE BINDER SLEEVE EFFECT --- */
 .pokemon-card.is-obtained {
-  border: 3px solid #ffafbd !important;
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(255, 175, 189, 0.4);
+  border: 3px solid #ffafbd !important;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 175, 189, 0.4);
 }
 
 /* This creates the diagonal plastic reflection */
 .pokemon-card.is-obtained::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* So you can still click buttons! */
-  z-index: 10;
-  
-  background: linear-gradient(
-    135deg, 
-    rgba(255, 255, 255, 0.4) 0%, 
-    rgba(255, 255, 255, 0) 50%, 
-    rgba(255, 255, 255, 0.1) 100%
-  );
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* So you can still click buttons! */
+  z-index: 10;
+  
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.4) 0%, 
+    rgba(255, 255, 255, 0) 50%, 
+    rgba(255, 255, 255, 0.1) 100%
+  );
 }
 
 /* Make the actual card image look more "premium" when obtained */
 .pokemon-card.is-obtained img {
-  filter: contrast(1.1) brightness(1.05);
+  filter: contrast(1.1) brightness(1.05);
 }
 /* --- THE HOLOGRAPHIC SLEEVE EFFECT --- */
 .pokemon-card.is-obtained {
-  border: 3px solid #ffafbd !important;
-  transform: translateY(-8px); /* Lifts it higher to show it's special */
-  box-shadow: 0 15px 35px rgba(255, 175, 189, 0.6);
-  background: white;
+  border: 3px solid #ffafbd !important;
+  transform: translateY(-8px); /* Lifts it higher to show it's special */
+  box-shadow: 0 15px 35px rgba(255, 175, 189, 0.6);
+  background: white;
 }
 
 /* The Rainbow Holo Layer */
 .pokemon-card.is-obtained::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 10;
-  border-radius: 22px;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  border-radius: 22px;
 
-  /* This creates the rainbow "oil-slick" look + the diagonal white flash */
-  background: linear-gradient(
-    125deg,
-    rgba(255, 0, 0, 0.05) 0%,
-    rgba(255, 255, 0, 0.05) 15%,
-    rgba(0, 255, 255, 0.1) 30%,
-    rgba(255, 255, 255, 0.5) 50%, /* This is the bright "shine" streak */
-    rgba(0, 255, 255, 0.1) 70%,
-    rgba(255, 0, 255, 0.05) 85%,
-    rgba(255, 0, 0, 0.05) 100%
-  );
-  
-  background-size: 200% 200%;
-  animation: holo-shimmer 4s ease infinite;
+  /* This creates the rainbow "oil-slick" look + the diagonal white flash */
+  background: linear-gradient(
+    125deg,
+    rgba(255, 0, 0, 0.05) 0%,
+    rgba(255, 255, 0, 0.05) 15%,
+    rgba(0, 255, 255, 0.1) 30%,
+    rgba(255, 255, 255, 0.5) 50%, /* This is the bright "shine" streak */
+    rgba(0, 255, 255, 0.1) 70%,
+    rgba(255, 0, 255, 0.05) 85%,
+    rgba(255, 0, 0, 0.05) 100%
+  );
+  
+  background-size: 200% 200%;
+  animation: holo-shimmer 4s ease infinite;
 }
 
 /* This makes the rainbow shine move slowly back and forth */
 @keyframes holo-shimmer {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Make the card artwork pop under the holo */
 .pokemon-card.is-obtained img {
-  filter: contrast(1.2) brightness(1.1) saturate(1.2);
+  filter: contrast(1.2) brightness(1.1) saturate(1.2);
 }
 
 /* This makes the card pop up when you hover! */
 .pokemon-card:hover {
-  transform: translateY(-15px) scale(1.03); /* Lifts it up and grows it 3% */
-  box-shadow: 0 20px 40px rgba(255, 175, 189, 0.4); /* Adds a soft pink glow shadow */
-  z-index: 100; /* Makes sure the card being hovered sits on top of the others */
+  transform: translateY(-15px) scale(1.03); /* Lifts it up and grows it 3% */
+  box-shadow: 0 20px 40px rgba(255, 175, 189, 0.4); /* Adds a soft pink glow shadow */
+  z-index: 100; /* Makes sure the card being hovered sits on top of the others */
 }
 
 /* Optional: Make the image inside the card brighten up too */
 .pokemon-card:hover img {
-  filter: brightness(1.1);
-  transition: 0.3s;
+  filter: brightness(1.1);
+  transition: 0.3s;
 }
 
 .pokemon-card {
-  /* ... your other styles ... */
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  /* ... your other styles ... */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
 }
 
 .chip:hover {
-  transform: scale(1.1);
-  background-color: #ffafbd;
-  color: white;
+  transform: scale(1.1);
+  background-color: #ffafbd;
+  color: white;
 }
