@@ -101,8 +101,11 @@ window.toggleMusic = function() {
 }
 
 // --- COLLECTION LOGIC ---
+// Adding "window." makes this function public for your buttons
 window.setObtained = async function(cardId, method) {
   const user = auth.currentUser;
+  
+  // If the user isn't logged in, the buttons won't do anything
   if (!user) {
     alert("Please sign in with Google to save your cards!");
     return;
@@ -111,19 +114,47 @@ window.setObtained = async function(cardId, method) {
   const card = document.getElementById(cardId);
   const gachaBtn = card.querySelector('.gacha-btn');
   const pointsBtn = card.querySelector('.points-btn');
+  
+  // Create a reference to this specific card in your Firebase database
   const cardRef = ref(db, `users/${user.uid}/cards/${cardId}`);
 
+  // Check if we are "unselecting" a button that is already active
   const isRemoving = (method === 'gacha' && gachaBtn.classList.contains('gacha-active')) || 
                      (method === 'points' && pointsBtn.classList.contains('points-active'));
 
   if (isRemoving) {
-    await set(cardRef, null); 
-    updateCardUI(cardId, null);
+    await set(cardRef, null); // Remove from database
+    updateCardUI(cardId, null); // Update the screen
   } else {
-    await set(cardRef, method);
-    updateCardUI(cardId, method);
+    await set(cardRef, method); // Save to database
+    updateCardUI(cardId, method); // Update the screen
+    
+    // Play the specific sound effect for Gacha or Points
     const sfx = document.getElementById(`sfx-${method}`);
     if (sfx) { sfx.currentTime = 0; sfx.play(); }
+  }
+};
+
+// This helper function updates the visual "active" state of the buttons
+function updateCardUI(cardId, method) {
+  const card = document.getElementById(cardId);
+  if (!card) return;
+
+  const gachaBtn = card.querySelector('.gacha-btn');
+  const pointsBtn = card.querySelector('.points-btn');
+
+  // Reset both buttons first
+  gachaBtn.classList.remove('gacha-active');
+  pointsBtn.classList.remove('points-active');
+  card.classList.remove('is-obtained');
+
+  // Activate the correct one based on what was clicked
+  if (method === 'gacha') {
+    gachaBtn.classList.add('gacha-active');
+    card.classList.add('is-obtained');
+  } else if (method === 'points') {
+    pointsBtn.classList.add('points-active');
+    card.classList.add('is-obtained');
   }
 }
 
