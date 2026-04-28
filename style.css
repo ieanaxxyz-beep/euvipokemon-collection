@@ -393,35 +393,55 @@ justify-content: center; /* This centers the cards inside the grid */
 }
 
 /* 1. The card needs to be the anchor */
+/* Ensure the card container doesn't block children */
 .pokemon-card {
   position: relative;
+  background: white;
+  width: 220px;
+  padding: 15px;
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(150, 100, 255, 0.1);
+  text-align: center;
+  border: 3px solid transparent;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* This ensures the holo effect doesn't block the buttons */
+  overflow: visible; 
 }
 
-/* 2. This creates the pop-up ONLY when you press/hold the card */
-.pokemon-card:active::before {
-  content: attr(data-points) " pts";
+/* Update your active states to be super strong */
+.chip.gacha-active, .chip.points-active {
+  background: #ff85a1 !important;
+  color: white !important;
+  border: 2px solid #fff !important;
+  box-shadow: 0 0 15px #ffafbd !important;
+  transform: scale(1.05);
+}
+
+/* Fix the Holographic layer so it NEVER blocks clicks */
+.pokemon-card.is-obtained::after {
+  content: "";
   position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255, 175, 189, 0.95); /* Your pink theme */
-  color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 1.2rem;
-  z-index: 100;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  pointer-events: none; /* So it doesn't interfere with your mouse */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 22px;
+  pointer-events: none !important; /* CRITICAL: Allows clicks to pass through to buttons */
+  z-index: 1; /* Keep it low */
+  background: linear-gradient(
+    125deg,
+    rgba(255, 0, 0, 0.05) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 0, 0, 0.05) 100%
+  );
+  background-size: 200% 200%;
+  animation: holo-shimmer 4s ease infinite;
 }
 
-/* 3. Optional: Make the card blur slightly when showing points */
-.pokemon-card:active img {
-  filter: blur(2px) brightness(0.8);
-}
-
-/* 4. THE CUTE BOUNCY BUTTONS */
+/* Ensure buttons stay ABOVE the holo shimmer */
 .button-group {
+  position: relative;
+  z-index: 20; /* Higher than the ::after layer */
   display: flex;
   gap: 8px;
   justify-content: center;
