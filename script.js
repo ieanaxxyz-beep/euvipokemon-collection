@@ -5,8 +5,10 @@ import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/1
 
 // Your Firebase configuration
 const firebaseConfig = {
+ const firebaseConfig = {
   apiKey: "AIzaSyCapNbMuYR4Hz0bERj0SVPE6CiqSAUxK-k",
   authDomain: "tcg-pocket-d358c.firebaseapp.com",
+  databaseURL: "https://tcg-pocket-d358c-default-rtdb.asia-southeast1.firebasedatabase.app/", 
   projectId: "tcg-pocket-d358c",
   storageBucket: "tcg-pocket-d358c.firebasestorage.app",
   messagingSenderId: "463561133468",
