@@ -193,10 +193,14 @@ function loadBinderFromCloud(uid) {
 }
 
 onAuthStateChanged(auth, (user) => {
+  const overlay = document.getElementById('login-overlay');
   if (user) {
-    document.getElementById('login-overlay').style.display = 'none';
+    // THIS IS THE KEY CHANGE:
+    overlay.style.display = 'none'; 
+    overlay.style.pointerEvents = 'none'; // This tells the "glass" to let clicks pass through
     loadBinderFromCloud(user.uid);
   } else {
-    document.getElementById('login-overlay').style.display = 'flex';
+    overlay.style.display = 'flex';
+    overlay.style.pointerEvents = 'all'; // This turns the "glass" back on so you can type
   }
 });
